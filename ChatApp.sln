@@ -23,9 +23,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{34A9601A-F4A1-49DB-8C59-201E85C7F350}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApp", "..\ChatApp\ChatApp.csproj", "{D37ACDAD-F9B4-4498-8539-4C8F752BA65E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApp", "ChatApp\ChatApp.csproj", "{D37ACDAD-F9B4-4498-8539-4C8F752BA65E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockBot", "..\StockBot\StockBot.csproj", "{CD771C20-8217-4D3C-935A-2756E345CF81}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockBot", "StockBot\StockBot.csproj", "{CD771C20-8217-4D3C-935A-2756E345CF81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
