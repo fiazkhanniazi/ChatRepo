@@ -9,3 +9,6 @@
 # net stop RabbitMQ
 # net start RabbitMQ
 # url to check RabbitMQ is running or not http://localhost:15672/
+# You should have visual studio 2022 to for loading the solution
+# Go to Tools options then select Nuget Manager Console 
+# Select Persistent project and run command to update database  -- Update-Database
