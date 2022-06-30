@@ -10,9 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OnionArchitecutre\Persistence\Persistence.csproj" />
-    <ProjectReference Include="..\OnionArchitecutre\Presentation\Presentation.csproj" />
-    <ProjectReference Include="..\OnionArchitecutre\Services\Services.csproj" />
+    <ProjectReference Include="..\Persistence\Persistence.csproj" />
+    <ProjectReference Include="..\Presentation\Presentation.csproj" />
+    <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>
 
 </Project>
