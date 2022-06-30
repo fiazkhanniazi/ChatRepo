@@ -72,7 +72,7 @@ namespace ChatApp.Controllers
                 var url = "https://localhost:44319/api/accounts/registeruser";
                 var response = await _client.PostAsync(url, data);
                 result = response.Content.ReadAsStringAsync().Result;
-                if (result == "true")
+                if (result == "true" )
                 {
                     return RedirectToAction("Chat", "Chat");
                 }

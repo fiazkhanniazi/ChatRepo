@@ -18,18 +18,18 @@ namespace Presentation.Controllers
         public AccountsController(IServiceManager serviceManager) => _serviceManager = serviceManager;
         [Route("registerUser")]
         [HttpPost]
-        public async Task<IActionResult> RegisterUser([FromBody] RegisterViewModel model, CancellationToken cancellationToken)
+        public async Task<string> RegisterUser([FromBody] RegisterViewModel model, CancellationToken cancellationToken)
         {
             try
             {
                 var accountsDto = await _serviceManager.AccountService.RegisterAsync(model, cancellationToken);
 
-               return Ok();
+               return  "true";
             }
             catch(Exception ex)
             {
 
-                return BadRequest(ex.Message);
+                return ex.Message;
             }
         }
 

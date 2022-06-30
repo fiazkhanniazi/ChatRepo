@@ -18,6 +18,12 @@ ViewBag.Title = "Register";
 </div>  
 }  
 <table>  
+
+<tr>  
+<td>@Html.LabelFor(a => a.Name)</td>  
+<td>@Html.TextBoxFor(a => a.Name)</td>  
+<td>@Html.ValidationMessageFor(a => a.Name)</td>  
+</tr>  
 <tr>  
 <td>@Html.LabelFor(a => a.Email)</td>  
 <td>@Html.TextBoxFor(a => a.Email)</td>  

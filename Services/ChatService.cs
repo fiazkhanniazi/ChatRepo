@@ -10,8 +10,11 @@ using Domain.Exceptions;
 using Domain.Repositories;
 using Mapster;
 using MassTransit;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SignalR;
 using Services.Abstractions;
+using Microsoft.AspNetCore.Identity;
+
 
 namespace Services
 {
@@ -20,14 +23,17 @@ namespace Services
         private readonly IRepositoryManager _repositoryManager;
         private readonly IBus _bus;
         private IHubContext<ChatService> _context;
-
+      
+        private readonly HttpContextAccessor _httpContex;
         private readonly HttpClient _client;
-        public ChatService(IRepositoryManager repositoryManager, IBus bus, IHubContext<ChatService> context)
+        public ChatService(IRepositoryManager repositoryManager, IBus bus, IHubContext<ChatService> context, HttpContextAccessor httpContex)
         {
             _repositoryManager = repositoryManager;
             _bus = bus;
             _context = context;
-            _client =new HttpClient();
+            _client = new HttpClient();
+            _httpContex = httpContex;
+           
         }
 
 
@@ -35,6 +41,11 @@ namespace Services
         {
             try
             {
+                // var user = _httpContex.HttpContext.User.Identity.Name;
+                input.TargetUserName = _httpContex.HttpContext.User.Identity.Name;
+
+
+
                 if (input.Message.StartsWith("/stock="))
                 {
                     var json = Newtonsoft.Json.JsonConvert.SerializeObject(input);
@@ -42,11 +53,7 @@ namespace Services
                     var url = "https://localhost:44366/Bot";
                     var response = await _client.PostAsync(url, data);
                     var result = response.Content.ReadAsStringAsync().Result;
-                    input.Message = result;
-                    input.DateTime = DateTime.Now;
-                    Uri uri = new Uri("rabbitmq://localhost/chatQueue");
-                    var endPoint = await _bus.GetSendEndpoint(uri);
-                    await endPoint.Send(input);
+                    
 
                     return await _repositoryManager.ChatRepository.SendMessageAsync(input);
                     
@@ -54,7 +61,7 @@ namespace Services
                 }
                 else
                 {
-                    await _context.Clients.All.SendAsync("ReceiveMessage", input.TargetUserName, input.Message);
+                    await _context.Clients.All.SendAsync("ReceiveMessage", input);
                 }
 
                 
@@ -72,7 +79,7 @@ namespace Services
             var data = context.Message;
          
             await RecieveMessageAsync(data);
-            await _context.Clients.All.SendAsync("ReceiveMessage", data.TargetUserName, data.Message);
+            await _context.Clients.All.SendAsync("ReceiveMessage", data);
 
          
         }

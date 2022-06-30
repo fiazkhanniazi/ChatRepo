@@ -30,12 +30,12 @@ namespace Persistence.Repositories
 
         public async Task<string> ResgisterAsync(RegisterViewModel model, CancellationToken cancellationToken = default)
         {
-
+           
             try
             {
                 var user = new IdentityUser
                 {
-                    UserName = model.Email,
+                    UserName = model.Name,
                     Email = model.Email,
                 };
 

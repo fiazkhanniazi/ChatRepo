@@ -40,9 +40,24 @@ namespace StockBot
                     c.SwaggerDoc("v1", new OpenApiInfo { Title = "StockBot", Version = "v1" });
                 });
 
-               
+                services.AddMassTransit(x =>
+                {
+                    
 
-              
+                    x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
+                    {
+                       
+
+                        cfg.Host(new Uri("rabbitmq://localhost"), h =>
+                        {
+                            h.Username("guest");
+                            h.Password("guest");
+                        });
+                       
+                    }));
+                });
+
+
             }
             catch (Exception ex) { 
             

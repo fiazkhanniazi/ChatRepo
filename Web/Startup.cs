@@ -2,6 +2,7 @@ using Domain.Repositories;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -29,14 +30,14 @@ namespace Web
 
 
             services.AddScoped<IChatService,ChatService>();
-
+            services.AddScoped<HttpContextAccessor>();
             services.AddMassTransit(x =>
             {
                 x.AddConsumer<IChatService>();
 
                 x.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
-                    //cfg.UseHealthCheck(provider);
+                   // cfg.UseHealthCheck(provider);
 
                     cfg.Host(new Uri("rabbitmq://localhost"), h =>
                     {
@@ -94,6 +95,7 @@ namespace Web
                        .SetIsOriginAllowed((host) => true)
                        .AllowCredentials();
             }));
+            services.AddAuthorization();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -112,7 +114,7 @@ namespace Web
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
 

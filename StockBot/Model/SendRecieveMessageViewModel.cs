@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StockBot.Model
 {
-    public class SendRecieveMessageViewModel
+    public class SendRecieveMessageViewModel1
     {
         public string TargetUserName { get; set; }
         public string Message { get; set; }
