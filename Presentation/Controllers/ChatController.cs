@@ -3,11 +3,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using Contracts;
 using MassTransit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Abstractions;
 
 namespace Presentation.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/owners")]
     public class ChatController : ControllerBase

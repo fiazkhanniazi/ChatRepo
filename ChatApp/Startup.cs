@@ -37,6 +37,9 @@ namespace ChatApp
           
             services.AddControllersWithViews();
             services.AddHttpContextAccessor();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession();
             //services.AddScoped<IServiceManager, ServiceManager>();
 
             //services.AddScoped<IRepositoryManager, RepositoryManager>();
@@ -74,7 +77,7 @@ namespace ChatApp
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -82,6 +85,7 @@ namespace ChatApp
                     pattern: "{controller=Account}/{action=Login}/{id?}");
             });
             app.UseEndpoints(endpoints => endpoints.MapControllers());
+            
         }
     }
 }

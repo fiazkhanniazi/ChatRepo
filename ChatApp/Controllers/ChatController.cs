@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ChatApp.Controllers
 {
@@ -6,6 +7,8 @@ namespace ChatApp.Controllers
     {
         public IActionResult  Chat()
         {
+            var sessionData = HttpContext.Session.GetString("UserName");
+            ViewBag.userName = sessionData;
             return View();
         }
     }

@@ -29,12 +29,14 @@ connection.start().then(function () {
 document.getElementById("sendButton").addEventListener("click", function (event) {
    
     var message = document.getElementById("messageInput").value;
-
+    var user = document.getElementById("userInput").value;
     var today = new Date();
     var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
     var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    var username = user.split('@')[0];
     //console.log(date + ' ' + time);
-    var model = { TargetUserName: '', Message: message, DateTime: date + ' ' + time }
+    var model = {TargetUserName:username, Message: message, DateTime: date + ' ' + time }
+
     connection.invoke("SendMessageAsync", model).catch(function (err) {
         return console.error(err.toString());
     });

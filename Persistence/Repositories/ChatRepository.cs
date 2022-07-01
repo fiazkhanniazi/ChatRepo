@@ -21,35 +21,14 @@ namespace Persistence.Repositories
 
         public async Task<string> SendMessageAsync(SendRecieveMessageViewModel input)
         {
-            //try
-            //{
-            //    if (input != null)
-            //    {
-            //        input.DateTime = DateTime.Now;
-            //        Uri uri = new Uri("rabbitmq://localhost/ticketQueue");
-            //        var endPoint = await _bus.GetSendEndpoint(uri);
-            //        await endPoint.Send(input);
-
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    throw;
-            //}
+           
 
             return "Sent to queue";
 
         }
 
 
-        //public async Task Consume(ConsumeContext<SendRecieveMessageDTO> context)
-        //{
-        //    var data = context.Message;
-        //    //Validate the Ticket Data
-        //    //Store to Database
-        //    //Notify the user via Email / SMS
-        //  await  RecieveMessage(data);
-        //}
+        
 
         public async Task<SendRecieveMessageViewModel> RecieveMessage(SendRecieveMessageViewModel context)
         {

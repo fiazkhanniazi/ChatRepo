@@ -41,10 +41,10 @@ namespace Services
         {
             try
             {
-                // var user = _httpContex.HttpContext.User.Identity.Name;
-                input.TargetUserName = _httpContex.HttpContext.User.Identity.Name;
+                
+               
 
-
+              
 
                 if (input.Message.StartsWith("/stock="))
                 {

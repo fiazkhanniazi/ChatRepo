@@ -9,6 +9,7 @@ using Domain.Entities;
 using Domain.Repositories;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -67,9 +68,12 @@ namespace Persistence.Repositories
         public async Task<bool> LoginAsync(LoginViewModel user, CancellationToken cancellationToken = default) {
            
                 var result = await _signInManager.PasswordSignInAsync(user.Email, user.Password, user.RememberMe, false);
+            
 
-                if (result.Succeeded)
+
+            if (result.Succeeded)
                 {
+                
                 return true;
                 }
 

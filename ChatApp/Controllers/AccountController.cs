@@ -1,4 +1,5 @@
 ﻿using ChatApp.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Session;
 
 namespace ChatApp.Controllers
 {
@@ -47,6 +49,8 @@ namespace ChatApp.Controllers
                  result = response.Content.ReadAsStringAsync().Result;
                 if(result == "true")
                 {
+                    HttpContext.Session.SetString("UserName", model.Email);
+                    TempData["userName"] = model.Email;
                     return RedirectToAction("Chat","Chat");
                 }
 
