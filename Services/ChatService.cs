@@ -24,9 +24,9 @@ namespace Services
         private readonly IBus _bus;
         private IHubContext<ChatService> _context;
       
-        private readonly HttpContextAccessor _httpContex;
+        private readonly IHttpContextAccessor _httpContex;
         private readonly HttpClient _client;
-        public ChatService(IRepositoryManager repositoryManager, IBus bus, IHubContext<ChatService> context, HttpContextAccessor httpContex)
+        public ChatService(IRepositoryManager repositoryManager, IBus bus, IHubContext<ChatService> context, IHttpContextAccessor httpContex)
         {
             _repositoryManager = repositoryManager;
             _bus = bus;

@@ -30,7 +30,11 @@ document.getElementById("sendButton").addEventListener("click", function (event)
    
     var message = document.getElementById("messageInput").value;
 
-    var model = { TargetUserName: '', Message: message, DateTime: Date.DateTime }
+    var today = new Date();
+    var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+    //console.log(date + ' ' + time);
+    var model = { TargetUserName: '', Message: message, DateTime: date + ' ' + time }
     connection.invoke("SendMessageAsync", model).catch(function (err) {
         return console.error(err.toString());
     });

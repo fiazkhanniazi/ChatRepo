@@ -35,7 +35,7 @@ namespace StockBot.Stock
 
             model.Message = message;
             model.TargetUserName = "Bot";
-            model.DateTime = DateTime.Now;
+           
             Uri uri = new Uri("rabbitmq://localhost/chatQueue");
             var endPoint = await _bus.GetSendEndpoint(uri);
             await endPoint.Send<SendRecieveMessageViewModel>(model);

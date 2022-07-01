@@ -15,7 +15,7 @@ namespace Services
         private readonly IBus _bus;
         private IHubContext<ChatService> _context;
         private readonly UserManager<IdentityUser> _userManager;
-        public ServiceManager(IRepositoryManager repositoryManager,IBus bus, IHubContext<ChatService> context, HttpContextAccessor httpContex)
+        public ServiceManager(IRepositoryManager repositoryManager,IBus bus, IHubContext<ChatService> context, IHttpContextAccessor httpContex)
         {
             _bus = bus;
             _lazyChatService = new Lazy<IChatService>(() => new ChatService(repositoryManager, _bus, context, httpContex));

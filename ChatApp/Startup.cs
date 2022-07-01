@@ -36,7 +36,7 @@ namespace ChatApp
            
           
             services.AddControllersWithViews();
-
+            services.AddHttpContextAccessor();
             //services.AddScoped<IServiceManager, ServiceManager>();
 
             //services.AddScoped<IRepositoryManager, RepositoryManager>();
@@ -72,8 +72,8 @@ namespace ChatApp
             app.UseStaticFiles();
 
             app.UseRouting();
-            //app.UseAuthentication();
-            //app.UseAuthorization();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

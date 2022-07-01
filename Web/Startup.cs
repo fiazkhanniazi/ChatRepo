@@ -30,7 +30,8 @@ namespace Web
 
 
             services.AddScoped<IChatService,ChatService>();
-            services.AddScoped<HttpContextAccessor>();
+           
+            //  services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddMassTransit(x =>
             {
                 x.AddConsumer<IChatService>();
@@ -95,6 +96,8 @@ namespace Web
                        .SetIsOriginAllowed((host) => true)
                        .AllowCredentials();
             }));
+            services.AddHttpContextAccessor();
+            services.AddAuthentication();
             services.AddAuthorization();
         }
 

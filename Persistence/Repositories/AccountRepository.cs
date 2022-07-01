@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using Contracts;
 using Domain.Entities;
 using Domain.Repositories;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,7 +38,7 @@ namespace Persistence.Repositories
             {
                 var user = new IdentityUser
                 {
-                    UserName = model.Name,
+                    UserName = model.Email,
                     Email = model.Email,
                 };
 
@@ -47,6 +50,8 @@ namespace Persistence.Repositories
 
                    
                 }
+
+              
 
                 return result.Succeeded ? result.ToString() : result.ToString();
             }
