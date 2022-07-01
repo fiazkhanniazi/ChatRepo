@@ -7,8 +7,7 @@ namespace ChatApp.Controllers
     {
         public IActionResult  Chat()
         {
-            var sessionData = HttpContext.Session.GetString("UserName");
-            ViewBag.userName = sessionData;
+           
             return View();
         }
     }

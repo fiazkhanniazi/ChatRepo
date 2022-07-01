@@ -49,7 +49,7 @@ namespace ChatApp.Controllers
                  result = response.Content.ReadAsStringAsync().Result;
                 if(result == "true")
                 {
-                    HttpContext.Session.SetString("UserName", model.Email);
+                  
                     TempData["userName"] = model.Email;
                     return RedirectToAction("Chat","Chat");
                 }
